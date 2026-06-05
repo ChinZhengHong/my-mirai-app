@@ -30,9 +30,27 @@
                     console.log("Song from Debugger:", app.songUrl);
                     } 
                     
+                    },
+
+                onVideoReady: (video) => {
+                    console.log("Video is ready:");
+                    player.requestPlay();
+                },
+                
+                onTimeUpdate(position) {
+                    if(player.video){
+                    const phrase = player.video.findPhrase(position);
+
+                    if (phrase) {
+                        document.getElementById("lyrics").textContent = phrase.text;
+                    } else {
+                        document.getElementById("lyrics").textContent = "";
                     }
+                }
+                }
             
             });
         </script>
+        <div id ="lyrics">Loading...</div>
      </body>
 </html>
