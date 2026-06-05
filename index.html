@@ -25,6 +25,8 @@
                 
             });
 
+            let currentText = "";
+            let currentChar = null;
             
             player.addListener({
                 onAppReady: () => {
@@ -34,25 +36,32 @@
 
                onVideoReady: () =>{
                 console.log("Video is ready");
+                },
 
-                console.log("First phrase:", player.video.firstPhrase?.text);
-                console.log("First phrase start:", player.video.firstPhrase?.startTime);
-               },
-
-               
                onTimeUpdate(position) {
                 console.log("time:",position);
-                let currentPhrase = null;
 
-                if (player.video) {
-                    const phrase = player.video.findPhrase(position);
-                    if (phrase && phrase !== currentPhrase) {
-                        currentPhrase = phrase;
-                        console.log("Current phrase:", currentPhrase.text);
-                        document.getElementById("lyrics").textContent = currentPhrase.text;
-                }
-                }
-               }
+                if (!player.video) return;
+
+                const char = player.video.findChar(position);
+
+                if (char && char !== currentChar) {
+                    currentChar = char;
+                    const phrase = char.parent;
+
+                    let text = "";
+                    let c = phrase.children[0];
+
+                    while(c && c !== char.next ) {
+                        text += c.text;
+                        c = c.next;
+                    }
+                    if (text !== currentText) {
+                        currentText = text;
+                        document.getElementById("lyrics").textContent = text;
+                    }
+                } 
+            }
             
             });
 
