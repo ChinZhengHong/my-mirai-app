@@ -35,26 +35,30 @@
                onVideoReady: () =>{
                 console.log("Video is ready");
 
-                
+                console.log("First phrase:", player.video.firstPhrase?.text);
+                console.log("First phrase start:", player.video.firstPhrase?.startTime);
                },
 
+               
                onTimeUpdate(position) {
                 console.log("time:",position);
+                let currentPhrase = null;
 
                 if (player.video) {
                     const phrase = player.video.findPhrase(position);
-                    if (phrase) {
-                        document.getElementById("lyrics").textContent = phrase.text;
-                    } else {
-                        document.getElementById("lyrics").textContent = "";
+                    if (phrase && phrase !== currentPhrase) {
+                        currentPhrase = phrase;
+                        console.log("Current phrase:", currentPhrase.text);
+                        document.getElementById("lyrics").textContent = currentPhrase.text;
+                }
                 }
                }
-            },
+            
             });
 
             document.getElementById("play").addEventListener("click", () => {
             console.log("Play button clicked");
-            player.requestStop();
+            
             
             player.requestMediaSeek(0); // Start from the beginning
             player.requestPlay();
