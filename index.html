@@ -22,7 +22,7 @@
                 app: {
                     token: "TFDPmHRDYBEDf2cg",
                 },
-                mediaElement: document.getElementById("audio"),
+                
             });
 
             
@@ -54,11 +54,8 @@
 
             document.getElementById("play").addEventListener("click", () => {
             console.log("Play button clicked");
-
-            const audio = document.getElementById("audio");
-            audio.currentTime = 0;
-            audio.muted = false;
-            audio.play();
+            
+            player.requestMediaSeek(0); // Start from the beginning
             player.requestPlay();
                 
             });
