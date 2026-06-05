@@ -55,6 +55,8 @@
             });
 
             document.getElementById("play").addEventListener("click", () => {
+                console.log("Play button clicked");
+                player.requestMediaSeek(0);
                 player.requestPlay();
             });
         </script>
