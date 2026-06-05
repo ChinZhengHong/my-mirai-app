@@ -9,6 +9,8 @@
 
         <h1>Magical Mirai 2026</h1>
 
+        <button id="play">Play</button>
+
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/textalive-app-api/dist/index.js"></script>
         <script>
@@ -49,6 +51,10 @@
                 }
                 }
             
+            });
+
+            document.getElementById("play").addEventListener("click", () => {
+                player.requestPlay();
             });
         </script>
         <div id ="lyrics">Loading...</div>
