@@ -45,22 +45,22 @@
 
                 const char = player.video.findChar(position);
 
+                
                 if (char && char !== currentChar) {
                     currentChar = char;
                     const phrase = char.parent;
-
+                    
                     let text = "";
                     let c = phrase.children[0];
-
-                    while(c && c !== char.next ) {
+                    while (c) {
                         text += c.text;
+                        if (c === char) break;
                         c = c.next;
                     }
-                    if (text !== currentText) {
-                        currentText = text;
-                        document.getElementById("lyrics").textContent = text;
-                    }
-                } 
+
+                    currentText = text;
+                    document.getElementById("lyrics").textContent = currentText;
+                }
             }
             
             });
