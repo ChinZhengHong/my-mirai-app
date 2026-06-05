@@ -28,14 +28,16 @@
                 onAppReady(app) {
                     console.log("App is ready");
 
-                    player.createFromSongUrl("https://piapro.jp/t/E2i3");
+                if (app.songUrl) {
+                    player.createFromSongUrl(app.songUrl);
+                    }
                 },
-                onVideoReady() {
-                    console.log("Video is ready");
 
-                player.requestMediaSeek(0);
-                player.requestPlay();
-                }
+                onVideoReady() {
+                    console.log("Video is ready ✅");
+
+                    player.requestPlay();
+                },
             });
         </script>
      </body>
