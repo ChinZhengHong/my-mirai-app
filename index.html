@@ -22,42 +22,43 @@
                 app: {
                     token: "TFDPmHRDYBEDf2cg",
                 },
+                mediaElement: document.getElementById("audio"),
             });
 
             
             player.addListener({
-                onAppReady: (app) => {
-                    
-                if (app.songUrl) 
-                {
-                    console.log("Song from Debugger:", app.songUrl);
-                    } 
-                    
-                    },
-
-                onVideoReady: (video) => {
-                    console.log("Video is ready:");
-                    player.requestPlay();
+                onAppReady: () => {
+                    console.log("App is ready");
+                    player.createFromSongUrl("https://piapro.jp/t/hZ35/20240130103028");
                 },
-                
-                onTimeUpdate(position) {
-                    if(player.video){
-                    const phrase = player.video.findPhrase(position);
 
+               onVideoReady: () =>{
+                console.log("Video is ready");
+
+                
+               },
+
+               onTimeUpdate(position) {
+                console.log("time:",position);
+
+                if (player.video) {
+                    const phrase = player.video.findPhrase(position);
                     if (phrase) {
                         document.getElementById("lyrics").textContent = phrase.text;
                     } else {
                         document.getElementById("lyrics").textContent = "";
-                    }
-                    console.log("time:", position);
                 }
-                }
-            
+               }
+            },
             });
 
             document.getElementById("play").addEventListener("click", () => {
                 console.log("Play button clicked");
-                player.requestPlay();
+
+            const audio = document.getElementById("audio");
+                audio.currentTime = 0;
+                audio.muted = false;
+                audio.play();
             });
         </script>
         <div id ="lyrics">Loading...</div>
