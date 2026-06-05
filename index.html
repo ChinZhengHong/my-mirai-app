@@ -11,7 +11,7 @@
 
         <button id="play">Play</button>
 
-        <audio id="audio"></audio>
+        <audio id="audio" controls></audio>
 
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/textalive-app-api/dist/index.js"></script>
@@ -22,7 +22,6 @@
                 app: {
                     token: "TFDPmHRDYBEDf2cg",
                 },
-                mediaElement: document.getElementById("audio"),
             });
 
             
@@ -58,7 +57,6 @@
 
             document.getElementById("play").addEventListener("click", () => {
                 console.log("Play button clicked");
-                player.requestMediaSeek(0);
                 player.requestPlay();
             });
         </script>
