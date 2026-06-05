@@ -20,27 +20,22 @@
                 app: {
                     token: "TFDPmHRDYBEDf2cg",
                 },
-            })
-
-            player.createFromSongUrl("https://piapro.jp/t/FDb1/20220213190029", {
-            video: {
-                beatId: 4592290,
-                chordId: 2727635,
-                repetitiveSegmentId: 2824326,
-            }
+                mediaElement: document.createElement("audio")
             });
 
-            player.addListener({
-                onAppReady(){
+            
+                player.addListener({
+                onAppReady(app) {
                     console.log("App is ready");
+
+                    player.createFromSongUrl("https://piapro.jp/t/FDb1/20220213190029");
                 },
-                onVideoReady(){
+                onVideoReady() {
                     console.log("Video is ready");
-                },
-            });
-            document.getElementById("play").addEventListener("click", () => {
+
                 player.requestMediaSeek(0);
                 player.requestPlay();
+                }
             });
         </script>
      </body>
