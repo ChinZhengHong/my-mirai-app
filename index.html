@@ -53,11 +53,13 @@
             });
 
             document.getElementById("play").addEventListener("click", () => {
-                console.log("Play button clicked");
+            console.log("Play button clicked");
 
             const audio = document.getElementById("audio");
-                audio.currentTime = 0;
-                audio.muted = false;
+            audio.currentTime = 0;
+            audio.muted = false;
+            audio.play();
+            player.requestPlay();
                 
             });
         </script>
