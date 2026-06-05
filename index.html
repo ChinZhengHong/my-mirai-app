@@ -9,8 +9,6 @@
 
         <h1>Magical Mirai 2026</h1>
 
-        <button id="play">Play</button>
-
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/textalive-app-api/dist/index.js"></script>
         <script>
@@ -24,18 +22,17 @@
             });
 
             
-                player.addListener({
-                onAppReady(app) {
-                    console.log("App is ready");
-
-                    const playButton = document.getElementById("play");
-                },
-
-                onVideoReady() {
-                    console.log("Video is ready ✅");
-
-                    player.requestPlay();
-                },
+            player.addListener({
+                onAppReady: (app) => {
+                    if (!app.songUrl) {
+                    // Create video data from a song URL
+                    p.createFromSongUrl("https://www.youtube.com/watch?v=RYv4-QCJk4s&t=228s");
+                    }
+                    if (!app.managed) {
+                    // Show playback controls
+                    showControls();
+                    }
+            },
             });
         </script>
      </body>
