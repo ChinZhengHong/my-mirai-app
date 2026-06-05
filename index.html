@@ -22,7 +22,14 @@
                 },
             })
 
-            player.createFromSongUrl("https://piapro.jp/t/6W2N");
+            player.createFromSongUrl("https://piapro.jp/t/E2i3", {
+            video: {
+                beatId: 4592290,
+                chordId: 2727635,
+                repetitiveSegmentId: 2824326,
+            }
+            });
+
             player.addListener({
                 onAppReady(){
                     console.log("App is ready");
