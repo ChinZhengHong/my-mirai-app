@@ -26,13 +26,10 @@
                 onAppReady: (app) => {
                     if (!app.songUrl) {
                     // Create video data from a song URL
-                    p.createFromSongUrl("https://www.youtube.com/watch?v=RYv4-QCJk4s&t=228s");
+                    player.createFromSongUrl("https://www.youtube.com/watch?v=RYv4-QCJk4s&t=228s");
                     }
-                    if (!app.managed) {
-                    // Show playback controls
-                    showControls();
                     }
-            },
+            
             });
         </script>
      </body>
