@@ -29,9 +29,10 @@
             let currentChar = null;
             
             player.addListener({
-                onAppReady: () => {
-                    console.log("App is ready");
-                    player.createFromSongUrl("https://piapro.jp/t/hZ35/20240130103028");
+                onAppReady: (app) => {
+                    if (app.songUrl) {
+                        player.createFromSongUrl(app.songUrl);
+                    }
                 },
 
                onVideoReady: () =>{
