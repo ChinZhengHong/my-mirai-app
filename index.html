@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>My App</title>
+        <link rel="stylesheet" href="style.css">
     </head>
 
      <body>
@@ -59,7 +60,7 @@
                     }
 
                     currentText = text;
-                    document.getElementById("lyrics").textContent = currentText;
+                    document.getElementById("lyrics").innerHTML = `<span class = "pop">${currentText}</span>`;
                 }
             }
             
