@@ -12,8 +12,8 @@ body {
 
 .char{
     display: inline-block;
-    position: relative;
-    animation: fall 0.25s ease-out;
+    margin: 0 2px;
+    animation: fall 0.05s ease-out;
 }
 
 @keyframes fall {
