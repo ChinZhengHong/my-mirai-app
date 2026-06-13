@@ -34,42 +34,27 @@
                     player.createFromSongUrl("https://piapro.jp/t/E2i3/20251215092113");
                 },
 
-               onVideoReady: () =>{
-                console.log("Video is ready");
+                onVideoReady: () => {
+                    console.log("Video is ready");
                 },
 
-               onTimeUpdate(position) {
-                console.log("time:",position);
+                onTimeUpdate(position) {
+                    // update only when video is available
+                    if (!player.video) return;
 
-                if (!player.video) return;
+                    const char = player.video.findChar(position);
+                    if (!char) return;
 
-                const char = player.video.findChar(position);
+                    if (char !== currentChar) {
+                        const container = document.getElementById("lyrics");
+                        if (!currentChar || char.parent !== currentChar.parent) {
+                            container.innerHTML = "";
+                        }
 
-                
-                if (char && char !== currentChar) {
-                    currentChar = char;
-                    const phrase = char.parent;
-                    
-                    let text = "";
-                    let c = phrase.children[0];
-                    while (c) {
-                        text += c.text;
-                        if (c === char) break;
-                        c = c.next;
+                        currentChar = char;
+                        container.innerHTML += `<span class="char ">${char.text}</span>`;
                     }
-
-                    currentText = text;
-                    const container = document.getElementById("lyrics");
-
-                    let html = "";
-
-                    for (let i = 0; i < currentText.length; i++){
-                        html += `<span class = "char">${currentText[i]}</span>`;
-                    }
-                    container.innerHTML = html;
                 }
-            }
-            
             });
 
             document.getElementById("play").addEventListener("click", () => {
