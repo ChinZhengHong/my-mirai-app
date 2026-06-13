@@ -59,7 +59,14 @@
                     }
 
                     currentText = text;
-                    document.getElementById("lyrics").innerHTML = `<span class = "pop">${currentText}</span>`;
+                    const container = document.getElementById("lyrics");
+
+                    let html = "";
+
+                    for (let i = 0; i < currentText.length; i++){
+                        html += `<span class = "char">${currentText[i]}</span>`;
+                    }
+                    container.innerHTML = html;
                 }
             }
             
