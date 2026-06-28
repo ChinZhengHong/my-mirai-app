@@ -12,7 +12,7 @@
 
         <button id="play">Play</button>
 
-        <div id ="lyrics">TAKEOVER</div>
+        <div id ="lyrics"></div>
                 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/textalive-app-api/dist/index.js"></script>
         <script>
@@ -48,7 +48,7 @@
                     if (char !== currentChar) {
                         const container = document.getElementById("lyrics");
                         
-                        if (!currentChar || char.parent !== currentChar.parent) {
+                        if (!currentChar) {
                             currentLine = document.createElement("div");
                             currentLine.className = "line";
                             container.appendChild(currentLine);
@@ -56,18 +56,15 @@
 
                         currentChar = char;
 
-                        setTimeout(() => {
-                            currentLine.innerHTML += `<span class="char">${char.text}</span>`;
+                        currentLine.innerHTML += `<span class="char">${char.text}</span>`;
 
-                            const maxLines = 6;
-                            const container = document.getElementById("lyrics");
+                        const maxLines = 6;
 
-                            if (container.children.length > maxLines) {
-                                container.removeChild(container.firstChild);
-                            }
+                        if (container.children.length > maxLines) {
+                            container.removeChild(container.firstChild);
+                        }
 
-                            container.scrollTop = container.scrollHeight;
-                        }, 80)
+                        container.scrollTop = container.scrollHeight;
                     }
                 }
             });
