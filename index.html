@@ -39,34 +39,31 @@
                 },
 
                 onTimeUpdate(position) {
-                    // update only when video is available
                     if (!player.video) return;
 
                     const char = player.video.findChar(position);
                     if (!char) return;
 
-                    if (char !== currentChar) {
-                        const container = document.getElementById("lyrics");
-                        
-                        if (!currentChar) {
-                            currentLine = document.createElement("div");
-                            currentLine.className = "line";
-                            container.appendChild(currentLine);
-                        }
+                    const container = document.getElementById("lyrics");
 
-                        currentChar = char;
+                    if (!currentChar || char.parent !== currentChar.parent) {
+                        const line = document.createElement("div");
+                        line.className = "line";
 
-                        currentLine.innerHTML += `<span class="char">${char.text}</span>`;
+                        line.textContent = char.parent.text;
+
+                        container.appendChild(line);
 
                         const maxLines = 6;
-
                         if (container.children.length > maxLines) {
                             container.removeChild(container.firstChild);
                         }
 
                         container.scrollTop = container.scrollHeight;
                     }
-                }
+
+                    currentChar = char;
+                }                
             });
             
 
